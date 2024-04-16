@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Translate</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/semantic-ui/semantic.min.css' %}">
+  </head>
+  <body>
+    <div class="ui header segment">
+      <div class="ui container">
+          <h1 class="ui header">Online translate</h1>
+          <div class="ui divider"></div>
+          <p>Fast and Free</p>
+      </div>
+    </div>
+    <div class="ui container ">
+      <div class="ui placeholder segment">
+        <div class="ui icon header">
+          English-Uzbek   Uzbek-English
+        </div>
+        <div class="inline" style="width:40%;">
+          <div class="ui massive form search">
+            <form method="post">
+      {% csrf_token %}
+      <p>Choose Language</p>
+
+      <br>
+      <select required name="fromlanguage">
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
+        <option value="en">English</option>
+        <option value="zh">Chinese</option>
+        <option value="ig">Igbo</option>
+        <option value="yo">Yoruba</option>
+
+      </select>
+      <br>
+
+  <label for="django">Enter Text:</label>
+  <br/>
+  <textarea onChange="" id="translate" name="translate" placeholder="Enter your text here" rows="10" cols="70"></textarea>
+
+      <br><br>
+      <select required name="tolanguage">
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
+        <option value="en">English</option>
+        <option value="zh">Chinese</option>
+        <option value="ig">Igbo</option>
+        <option value="yo">Yoruba</option>
+
+
+      </select>
+      <br>
+      <br>
+      <button id="btn" type="submit">Translate</button>
+    </form>
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="ui piled segment">
+        <h4 class="ui header">Result</h4>
+        <table class="ui celled large olive table">
+          <thead>
+            <tr>
+              <th><i class="united kingdom flag"></i>English</th>
+              <th><i class="uzbekistan flag"></i>Uzbek</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if translation %}
+            <tr>
+              <td>{{ text }}</td>
+              <td>{{ translation }}</td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
